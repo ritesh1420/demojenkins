@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building done'
+            }
+        }
+        stage('test continue?') {
+            input {
+                message "Should we continiue"
+                ok "yes we shold"
+            }
+            steps {
+                echo 'tested sucessfully'
+            }
+        }
+        stage('deploy') {
+            steps {
+                echo 'deployed sucsessfuly'
+            }
+        }
+    }
+    post{
+        always{
+            echo 'i will always run'
+        }
+        failure{
+          echo "i will execute only if stage are get failed"
+        }
+        success{
+           echo "i will execute only if stare are successfully get run"
+        }
+  }
+}
